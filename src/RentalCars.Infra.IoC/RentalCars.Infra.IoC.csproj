@@ -7,7 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentValidation" Version="11.10.0" />
+    <ProjectReference Include="..\RentalCars.Domain\RentalCars.Domain.csproj" />
+    <ProjectReference Include="..\RentalCars.Infra.Data\RentalCars.Infra.Data.csproj" />
   </ItemGroup>
 
 </Project>

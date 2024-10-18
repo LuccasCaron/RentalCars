@@ -8,7 +8,7 @@ internal class CarValidator : AbstractValidator<Car>
     public CarValidator()
     {
         RuleFor(x => x.Brand)
-        .NotEmpty().WithMessage("A marca é obrigatória.");
+            .NotEmpty().WithMessage("A marca é obrigatória.");
 
         RuleFor(x => x.Model)
             .NotEmpty().WithMessage("O modelo do carro é obrigatório.");
