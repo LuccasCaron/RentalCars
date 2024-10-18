@@ -1,0 +1,96 @@
+# Build artifacts
+bin/
+obj/
+out/
+
+# User-specific files
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Mono Auto Generated Files
+mono_crash.*
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# VS Code directories
+.vscode/
+
+# Local history for Visual Studio
+.vs/
+
+# Log files
+*.log
+
+# DotNet user-specific files
+**/App_Data/
+
+# NuGet packages
+*.nupkg
+# The packages folder can be ignored because of Package Restore
+**/[Pp]ackages/
+# except build/, which is used as an MSBuild target.
+!**/[Pp]ackages/build/
+# Uncomment if necessary however generally it will be restored by NuGet
+#!**/[Pp]ackages/repositories.config
+
+# Include packages directory for certain version control systems
+*.nuget/packages/
+.nuget/
+
+# DotNet local NuGet cache
+~/.nuget
+
+# Directories for cloud providers
+**/.terraform/
+**/.cloud/
+
+# Rider
+.idea/
+
+# Dependency directories
+node_modules/
+bower_components/
+
+# Chutzpah Test files
+_Chutzpah*
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# StyleCop
+StyleCopReport.xml
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Uncomment if using .NET Core
+# .NET Core
+**/project.lock.json
+**/project.fragment.lock.json
+**/artifacts/
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Rider
+.idea/
+
+# User secrets
+**/secrets.json
