@@ -15,9 +15,9 @@ public class Rental : BaseEntity
 
     public Guid UserId { get; private set; }
 
-    public DateTime InitDate { get; private set; }
+    public DateTime RentalStartDate { get; private set; }
 
-    public DateTime FinalDate { get; private set; }
+    public DateTime RentalEndDate { get; private set; }
 
     public int AppliedDailyPrice { get; private set; }
 
@@ -31,16 +31,16 @@ public class Rental : BaseEntity
 
     protected Rental() { }
 
-    private Rental(Car car, Guid userId, DateTime initDate, DateTime finalDate)
+    private Rental(Car car, Guid userId, DateTime rentalStarDate, DateTime rentalEndDate)
     {
         Car = car ?? throw new ArgumentNullException(nameof(car));
         CarId = car.Id;
         UserId = userId;
-        InitDate = initDate;
-        FinalDate = finalDate;
+        RentalStartDate = rentalStarDate;
+        RentalEndDate = rentalEndDate;
         AppliedDailyPrice = car.DailyRentalPrice;
-        HasPaymentDelay = false; 
-        FineAmount = 0; 
+        HasPaymentDelay = false;
+        FineAmount = 0;
 
         Validate();
     }
@@ -49,9 +49,9 @@ public class Rental : BaseEntity
 
     #region Factory
 
-    public static Rental Create(Car car, Guid userId, DateTime finalDate)
+    public static Rental Create(Car car, Guid userId, DateTime rentalStarDate, DateTime rentalEndDate)
     {
-        Rental rental = new(car, userId, DateTime.Now, finalDate);
+        Rental rental = new(car, userId, rentalStarDate, rentalEndDate);
 
         rental.Validate();
 
@@ -62,10 +62,40 @@ public class Rental : BaseEntity
 
     #region Methods
 
-    public void ApplyLateFee(int fineAmount)
+    public int CalculateTotalToPay(DateTime returnDate)
     {
-        FineAmount = fineAmount;
+        int totalToPay = CalculateRentalCost();
+
+        if (returnDate > RentalEndDate)
+        {
+            int lateFee = CalculateLateFee(returnDate);
+            totalToPay += lateFee;
+        }
+
+        return totalToPay;
+    }
+
+    public void UpdateRentalEndDate(DateTime returnDate)
+    {
+        RentalEndDate = returnDate;
+    }
+
+    private int CalculateLateFee(DateTime returnDate)
+    {
         HasPaymentDelay = true;
+
+        int daysLate = (returnDate - RentalEndDate).Days;
+        int dailyFine = 50;
+
+        FineAmount = daysLate * dailyFine;
+
+        return FineAmount;
+    }
+
+    private int CalculateRentalCost()
+    {
+        int daysUsed = (RentalEndDate - RentalStartDate).Days;
+        return daysUsed * AppliedDailyPrice;
     }
 
     private void Validate()
@@ -78,4 +108,5 @@ public class Rental : BaseEntity
     }
 
     #endregion
+
 }

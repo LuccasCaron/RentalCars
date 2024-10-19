@@ -6,6 +6,7 @@ namespace RentalCars.Domain.Entities;
 
 public class Car : BaseEntity
 {
+
     #region Properties
 
     public string Brand { get; private set; } = string.Empty;

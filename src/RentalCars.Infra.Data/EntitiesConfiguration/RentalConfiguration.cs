@@ -26,13 +26,13 @@ internal class RentalConfiguration : IEntityTypeConfiguration<Rental>
                .HasColumnType("uuid")
                .IsRequired();
 
-        builder.Property(x => x.InitDate)
-               .HasColumnName("initDate")
+        builder.Property(x => x.RentalStartDate)
+               .HasColumnName("rentalStartDate")
                .HasColumnType("timestamp")
                .IsRequired();
 
-        builder.Property(x => x.FinalDate)
-               .HasColumnName("finalDate")
+        builder.Property(x => x.RentalEndDate)
+               .HasColumnName("rentalEndDate")
                .HasColumnType("timestamp")
                .IsRequired();
 

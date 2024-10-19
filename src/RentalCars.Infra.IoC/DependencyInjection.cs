@@ -16,7 +16,8 @@ public static class DependencyInjection
     {
 
         services.RegisterDbContext(configuration)
-                .RegisterIdentity(configuration);
+                .RegisterIdentity(configuration)
+                .RegisterCustomSwaggerGen();
 
         services.AddValidatorsFromAssemblyContaining<AddUserRequestValidator>();
 

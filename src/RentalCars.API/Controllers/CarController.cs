@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RentalCars.Application.Requests.Car;
 using RentalCars.Application.Services.Cars;
 
 namespace RentalCars.API.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("api/car")]
 public class CarController : ControllerBase
 {

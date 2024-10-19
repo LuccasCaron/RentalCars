@@ -58,11 +58,14 @@ public class UserService : IUserService
     {
         var result = await _signInManager.PasswordSignInAsync(credentials.Email, credentials.Password, false, false);
 
+        if(!result.Succeeded) return new Response<string>(null, 400, "Usuário ou senha incorretos.");
+
         var token = await _jwtService.GenerateTokenAsync(credentials.Email);
 
-        if (result.Succeeded) return new Response<string>(token);
+        if (!result.Succeeded) return new Response<string>(null, 400, "Erro ao gerar Token.");
 
-        return new Response<string>(null, 400, "Usuário ou senha incorretos.");
+        return new Response<string>(token);
+
     }
 
     #endregion

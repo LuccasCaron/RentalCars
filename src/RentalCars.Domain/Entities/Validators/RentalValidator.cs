@@ -15,13 +15,13 @@ internal class RentalValidator : AbstractValidator<Rental>
         RuleFor(x => x.UserId)
             .NotEmpty().WithMessage("O usuário é obrigatório para o aluguel.");
 
-        RuleFor(x => x.InitDate)
+        RuleFor(x => x.RentalStartDate)
             .NotEmpty().WithMessage("A data de início do aluguel é obrigatória.")
-            .LessThanOrEqualTo(DateTime.Now).WithMessage("A data de início do aluguel não pode ser no futuro.");
+            .GreaterThanOrEqualTo(DateTime.Now).WithMessage("A data de início do aluguel não pode ser no passado.");
 
-        RuleFor(x => x.FinalDate)
+        RuleFor(x => x.RentalEndDate)
             .NotEmpty().WithMessage("A data final do aluguel é obrigatória.")
-            .GreaterThan(x => x.InitDate).WithMessage("A data final do aluguel deve ser maior que a data de início.");
+            .GreaterThan(x => x.RentalStartDate).WithMessage("A data final do aluguel deve ser maior que a data de início.");
 
         RuleFor(x => x.AppliedDailyPrice)
             .GreaterThan(0).WithMessage("O valor diário do aluguel deve ser maior que zero.");
