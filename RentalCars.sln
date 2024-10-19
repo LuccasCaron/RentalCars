@@ -15,6 +15,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentalCars.Application", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentalCars.Domain.Tests", "tests\RentalCars.Domain.Tests\RentalCars.Domain.Tests.csproj", "{1E6C37A1-9B9C-4C27-B623-0B27FEF222BA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F244AB05-A6AB-4C5D-813F-1E0B8C709D68}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{8B64238F-245C-4F93-9CA0-D2CD52917E59}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +52,14 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{842A5696-1EBB-431F-B583-004C3C79A208} = {F244AB05-A6AB-4C5D-813F-1E0B8C709D68}
+		{5021B513-73B3-451D-A645-5C2945CB794D} = {F244AB05-A6AB-4C5D-813F-1E0B8C709D68}
+		{83CA13B6-B366-4D8B-B2ED-0DE51C4FD4C0} = {F244AB05-A6AB-4C5D-813F-1E0B8C709D68}
+		{B531B44F-7C0E-4B1F-A31E-FE6421E6F56C} = {F244AB05-A6AB-4C5D-813F-1E0B8C709D68}
+		{DA2D0241-BA88-42DD-AFB5-5C59A0F4154E} = {F244AB05-A6AB-4C5D-813F-1E0B8C709D68}
+		{1E6C37A1-9B9C-4C27-B623-0B27FEF222BA} = {8B64238F-245C-4F93-9CA0-D2CD52917E59}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F766C346-A66C-4F5D-81B9-99EB0C6384E1}
