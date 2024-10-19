@@ -35,5 +35,10 @@ internal class CarConfiguration : IEntityTypeConfiguration<Car>
                .HasColumnName("availability")
                .HasColumnType("boolean")
                .IsRequired();
+
+        builder.Property(x => x.DailyRentalPrice)
+               .HasColumnName("dailyRentalPrice")
+               .HasColumnType("int")
+               .IsRequired();
     }
 }

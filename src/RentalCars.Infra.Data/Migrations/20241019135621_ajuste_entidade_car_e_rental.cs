@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace RentalCars.Infra.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class ajuste_entidade_car_e_rental : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -59,7 +59,8 @@ namespace RentalCars.Infra.Data.Migrations
                     brand = table.Column<string>(type: "varchar(50)", nullable: false),
                     model = table.Column<string>(type: "varchar(50)", nullable: false),
                     year = table.Column<int>(type: "int", nullable: false),
-                    availability = table.Column<bool>(type: "boolean", nullable: false)
+                    availability = table.Column<bool>(type: "boolean", nullable: false),
+                    dailyRentalPrice = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -172,6 +173,30 @@ namespace RentalCars.Infra.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Rental",
+                columns: table => new
+                {
+                    id = table.Column<Guid>(type: "uuid", nullable: false),
+                    CarId = table.Column<Guid>(type: "uuid", nullable: false),
+                    userId = table.Column<Guid>(type: "uuid", nullable: false),
+                    initDate = table.Column<DateTime>(type: "timestamp", nullable: false),
+                    finalDate = table.Column<DateTime>(type: "timestamp", nullable: false),
+                    appliedDailyPrice = table.Column<int>(type: "int", nullable: false),
+                    hasPaymentDelay = table.Column<bool>(type: "boolean", nullable: false),
+                    fineAmount = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Rental", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_Rental_Car_CarId",
+                        column: x => x.CarId,
+                        principalTable: "Car",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -208,6 +233,11 @@ namespace RentalCars.Infra.Data.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Rental_CarId",
+                table: "Rental",
+                column: "CarId");
         }
 
         /// <inheritdoc />
@@ -229,13 +259,16 @@ namespace RentalCars.Infra.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Car");
+                name: "Rental");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Car");
         }
     }
 }

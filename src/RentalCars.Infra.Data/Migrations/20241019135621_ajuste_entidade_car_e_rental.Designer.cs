@@ -12,8 +12,8 @@ using RentalCars.Infra.Data.Context;
 namespace RentalCars.Infra.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241018195143_init")]
-    partial class init
+    [Migration("20241019135621_ajuste_entidade_car_e_rental")]
+    partial class ajuste_entidade_car_e_rental
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -236,6 +236,10 @@ namespace RentalCars.Infra.Data.Migrations
                         .HasColumnType("varchar(50)")
                         .HasColumnName("brand");
 
+                    b.Property<int>("DailyRentalPrice")
+                        .HasColumnType("int")
+                        .HasColumnName("dailyRentalPrice");
+
                     b.Property<string>("Model")
                         .IsRequired()
                         .HasColumnType("varchar(50)")
@@ -248,6 +252,46 @@ namespace RentalCars.Infra.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Car", (string)null);
+                });
+
+            modelBuilder.Entity("RentalCars.Domain.Entities.Rental", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<int>("AppliedDailyPrice")
+                        .HasColumnType("int")
+                        .HasColumnName("appliedDailyPrice");
+
+                    b.Property<Guid>("CarId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("FinalDate")
+                        .HasColumnType("timestamp")
+                        .HasColumnName("finalDate");
+
+                    b.Property<int>("FineAmount")
+                        .HasColumnType("int")
+                        .HasColumnName("fineAmount");
+
+                    b.Property<bool>("HasPaymentDelay")
+                        .HasColumnType("boolean")
+                        .HasColumnName("hasPaymentDelay");
+
+                    b.Property<DateTime>("InitDate")
+                        .HasColumnType("timestamp")
+                        .HasColumnName("initDate");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("userId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CarId");
+
+                    b.ToTable("Rental", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -299,6 +343,17 @@ namespace RentalCars.Infra.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("RentalCars.Domain.Entities.Rental", b =>
+                {
+                    b.HasOne("RentalCars.Domain.Entities.Car", "Car")
+                        .WithMany()
+                        .HasForeignKey("CarId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Car");
                 });
 #pragma warning restore 612, 618
         }

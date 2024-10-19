@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Requests\Car\Validators\" />
-    <Folder Include="Services\Car\" />
   </ItemGroup>
 
   <ItemGroup>
