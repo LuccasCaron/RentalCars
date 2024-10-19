@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentalCars.Domain", "src\RentalCars.Domain\RentalCars.Domain.csproj", "{842A5696-1EBB-431F-B583-004C3C79A208}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentalCars.Domain", "src\RentalCars.Domain\RentalCars.Domain.csproj", "{842A5696-1EBB-431F-B583-004C3C79A208}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentalCars.Infra.Data", "src\RentalCars.Infra.Data\RentalCars.Infra.Data.csproj", "{5021B513-73B3-451D-A645-5C2945CB794D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentalCars.Infra.Data", "src\RentalCars.Infra.Data\RentalCars.Infra.Data.csproj", "{5021B513-73B3-451D-A645-5C2945CB794D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentalCars.Infra.IoC", "src\RentalCars.Infra.IoC\RentalCars.Infra.IoC.csproj", "{83CA13B6-B366-4D8B-B2ED-0DE51C4FD4C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentalCars.Infra.IoC", "src\RentalCars.Infra.IoC\RentalCars.Infra.IoC.csproj", "{83CA13B6-B366-4D8B-B2ED-0DE51C4FD4C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentalCars.API", "src\RentalCars.API\RentalCars.API.csproj", "{B531B44F-7C0E-4B1F-A31E-FE6421E6F56C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentalCars.API", "src\RentalCars.API\RentalCars.API.csproj", "{B531B44F-7C0E-4B1F-A31E-FE6421E6F56C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentalCars.Application", "src\RentalCars.Application\RentalCars.Application.csproj", "{DA2D0241-BA88-42DD-AFB5-5C59A0F4154E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentalCars.Application", "src\RentalCars.Application\RentalCars.Application.csproj", "{DA2D0241-BA88-42DD-AFB5-5C59A0F4154E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentalCars.Domain.Tests", "tests\RentalCars.Domain.Tests\RentalCars.Domain.Tests.csproj", "{1E6C37A1-9B9C-4C27-B623-0B27FEF222BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{DA2D0241-BA88-42DD-AFB5-5C59A0F4154E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA2D0241-BA88-42DD-AFB5-5C59A0F4154E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA2D0241-BA88-42DD-AFB5-5C59A0F4154E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E6C37A1-9B9C-4C27-B623-0B27FEF222BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E6C37A1-9B9C-4C27-B623-0B27FEF222BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E6C37A1-9B9C-4C27-B623-0B27FEF222BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E6C37A1-9B9C-4C27-B623-0B27FEF222BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

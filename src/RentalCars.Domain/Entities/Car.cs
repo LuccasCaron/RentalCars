@@ -4,7 +4,7 @@ using RentalCars.Domain.Entities.Validators;
 
 namespace RentalCars.Domain.Entities;
 
-public class Car : BaseEntity
+public sealed class Car : BaseEntity
 {
 
     #region Properties
@@ -51,7 +51,7 @@ public class Car : BaseEntity
     #region Methods
 
     public void SetAvailibilityFalse()
-    {
+    {   
         if (!Availability)
         {
             throw new DomainException("Este carro não está disponível.");
