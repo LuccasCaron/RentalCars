@@ -24,7 +24,7 @@ public class UserController : ControllerBase
 
     #endregion
 
-    #region Post Methods
+    #region POST Methods
 
     [HttpPost("add")]
 

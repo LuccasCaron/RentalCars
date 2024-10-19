@@ -6,6 +6,9 @@ namespace RentalCars.Domain.Entities;
 
 public class Rental : BaseEntity
 {
+
+    #region Properties
+
     public Guid CarId { get; private set; }
 
     public Car Car { get; private set; }
@@ -21,6 +24,8 @@ public class Rental : BaseEntity
     public bool HasPaymentDelay { get; private set; }
 
     public int FineAmount { get; private set; }
+
+    #endregion
 
     #region Constructor
 
