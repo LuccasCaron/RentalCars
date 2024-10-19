@@ -15,10 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\RentalCars.Domain\RentalCars.Domain.csproj" />
     <ProjectReference Include="..\RentalCars.Infra.IoC\RentalCars.Infra.IoC.csproj" />
   </ItemGroup>
 

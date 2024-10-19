@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="DependencyInjection.cs~RF5fd8934.TMP" />
+    <Folder Include="Requests\Car\Validators\" />
+    <Folder Include="Services\Car\" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RentalCars.Application\RentalCars.Application.csproj" />
     <ProjectReference Include="..\RentalCars.Domain\RentalCars.Domain.csproj" />
     <ProjectReference Include="..\RentalCars.Infra.Data\RentalCars.Infra.Data.csproj" />
   </ItemGroup>

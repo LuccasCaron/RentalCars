@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentalCars.Infra.IoC", "src
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentalCars.API", "src\RentalCars.API\RentalCars.API.csproj", "{B531B44F-7C0E-4B1F-A31E-FE6421E6F56C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentalCars.Application", "src\RentalCars.Application\RentalCars.Application.csproj", "{DA2D0241-BA88-42DD-AFB5-5C59A0F4154E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{B531B44F-7C0E-4B1F-A31E-FE6421E6F56C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B531B44F-7C0E-4B1F-A31E-FE6421E6F56C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B531B44F-7C0E-4B1F-A31E-FE6421E6F56C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA2D0241-BA88-42DD-AFB5-5C59A0F4154E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA2D0241-BA88-42DD-AFB5-5C59A0F4154E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA2D0241-BA88-42DD-AFB5-5C59A0F4154E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA2D0241-BA88-42DD-AFB5-5C59A0F4154E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

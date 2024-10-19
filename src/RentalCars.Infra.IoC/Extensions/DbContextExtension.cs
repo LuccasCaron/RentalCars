@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RentalCars.Infra.Data.Context;
-using System;
 
 namespace RentalCars.Infra.IoC.Extensions;
 
