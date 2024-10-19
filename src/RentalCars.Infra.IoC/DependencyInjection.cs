@@ -1,7 +1,6 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using RentalCars.Application.Requests.Rental;
 using RentalCars.Application.Requests.User.Validators;
 using RentalCars.Application.Services.Cars;
 using RentalCars.Application.Services.Jwt;

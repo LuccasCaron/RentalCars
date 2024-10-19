@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using RentalCars.Application.Requests.Rental;
+using RentalCars.Application.Requests.Rentals;
 using RentalCars.Application.Services.Rentals;
 
 namespace RentalCars.API.Controllers;
@@ -11,19 +11,48 @@ namespace RentalCars.API.Controllers;
 public class RentalController : ControllerBase
 {
 
+    #region Properties
+
     private readonly IRentalService _rentalService;
+
+    #endregion
+
+    #region Constructor
 
     public RentalController(IRentalService rentalService)
     {
         _rentalService = rentalService ?? throw new ArgumentNullException(nameof(rentalService));
     }
 
+    #endregion
+
+    #region GET Methods
+
     [HttpGet("{id:guid}", Name = "GetAsync")]
 
     public async Task<IActionResult> GetAsync(Guid id)
     {
-        return Ok();
+        var response = await _rentalService.GetRentalByIdAsync(id);
+
+        if (response.IsSuccess) return Ok(response);
+
+        return NotFound(response);
     }
+
+    [HttpGet("user")]
+
+    public async Task<IActionResult> GetRentalsByUserEmail(string userEmail)
+    {
+        var response = await _rentalService.GetRentalsByUserEmailAsync(userEmail);
+
+        if (response.IsSuccess) return Ok(response);
+
+        return NotFound(response);
+    }
+
+    #endregion
+
+    #region POST Methods
 
     [HttpPost("add")]
 
@@ -38,7 +67,7 @@ public class RentalController : ControllerBase
 
     [HttpPost("simulate")]
 
-    public async Task<IActionResult> SimulateAsync(AddRentalRequest simulation)
+    public async Task<IActionResult> SimulateRentalCostAsync(AddRentalRequest simulation)
     {
         var response = await _rentalService.SimulateRentalCostAsync(simulation);
 
@@ -46,5 +75,33 @@ public class RentalController : ControllerBase
 
         return BadRequest(response);
     }
+
+    [HttpPost("finalize/{id:guid}")]
+
+    public async Task<IActionResult> FinalizeRentalByIdAsyncAsync(Guid id)
+    {
+        var response = await _rentalService.FinalizeRentalByIdAsync(id);
+
+        if (response.IsSuccess) return Ok(response);
+
+        return BadRequest(response);
+    }
+
+    #endregion
+
+    #region PATCH Methods
+
+    [HttpPatch("update/{id:guid}")]
+
+    public async Task<IActionResult> UpdateRentalEndDateByIdAsync(Guid id, DateTime newEndDate)
+    {
+        var response = await _rentalService.UpdateRentalEndDateByIdAsync(id, newEndDate);
+
+        if (response.IsSuccess) return Ok(response);
+
+        return BadRequest(response);
+    }
+
+    #endregion
 
 }

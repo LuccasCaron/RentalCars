@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace RentalCars.Application.Requests.Rental.Validators;
+namespace RentalCars.Application.Requests.Rentals.Validators;
 
 public class AddRentalRequestValidator : AbstractValidator<AddRentalRequest>
 {

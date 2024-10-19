@@ -86,7 +86,7 @@ public class Rental : BaseEntity
 
     public void UpdateRentalEndDate(DateTime returnDate)
     {
-        if (DateTime.Now <= RentalEndDate)
+        if (DateTime.Now > RentalEndDate)
         {
             throw new DomainException("Não é possível atualizar a data do aluguel depois da data final atual.");
         }

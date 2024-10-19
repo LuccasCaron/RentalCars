@@ -1,4 +1,4 @@
-﻿namespace RentalCars.Application.Requests.Rental;
+﻿namespace RentalCars.Application.Requests.Rentals;
 
 public class AddRentalRequest
 {
