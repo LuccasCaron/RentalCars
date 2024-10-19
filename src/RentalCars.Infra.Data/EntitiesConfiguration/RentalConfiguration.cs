@@ -25,20 +25,24 @@ internal class RentalConfiguration : IEntityTypeConfiguration<Rental>
                .HasColumnName("userId")
                .HasColumnType("uuid")
                .IsRequired();
-
         builder.Property(x => x.RentalStartDate)
                .HasColumnName("rentalStartDate")
-               .HasColumnType("timestamp")
+               .HasColumnType("timestamp with time zone") 
                .IsRequired();
 
         builder.Property(x => x.RentalEndDate)
                .HasColumnName("rentalEndDate")
-               .HasColumnType("timestamp")
+               .HasColumnType("timestamp with time zone") 
                .IsRequired();
 
         builder.Property(x => x.AppliedDailyPrice)
                .HasColumnName("appliedDailyPrice")
                .HasColumnType("int")
+               .IsRequired();
+
+        builder.Property(x => x.IsCompleted)
+               .HasColumnName("isCompleted")
+               .HasColumnType("boolean")
                .IsRequired();
 
         builder.Property(x => x.HasPaymentDelay)

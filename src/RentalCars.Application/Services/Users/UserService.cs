@@ -35,6 +35,11 @@ public class UserService : IUserService
 
     public async Task<Response<IdentityUser>> AddAsync(AddUserRequest newUser)
     {
+
+        var existUserWithThisEmail = await _userManager.FindByEmailAsync(newUser.Email);
+
+        if (existUserWithThisEmail is not null) return new Response<IdentityUser>(null, 400, "Já existe um usuário com esse e-mail.");
+
         var user = new IdentityUser
         {
             UserName = newUser.Email,

@@ -21,6 +21,8 @@ public class Rental : BaseEntity
 
     public int AppliedDailyPrice { get; private set; }
 
+    public bool IsCompleted { get; private set; }
+
     public bool HasPaymentDelay { get; private set; }
 
     public int FineAmount { get; private set; }
@@ -39,6 +41,7 @@ public class Rental : BaseEntity
         RentalStartDate = rentalStarDate;
         RentalEndDate = rentalEndDate;
         AppliedDailyPrice = car.DailyRentalPrice;
+        IsCompleted = false;
         HasPaymentDelay = false;
         FineAmount = 0;
 
@@ -75,9 +78,30 @@ public class Rental : BaseEntity
         return totalToPay;
     }
 
+    public int CalculateRentalCost()
+    {
+        int daysUsed = (RentalEndDate - RentalStartDate).Days;
+        return daysUsed * AppliedDailyPrice;
+    }
+
     public void UpdateRentalEndDate(DateTime returnDate)
     {
+        if (DateTime.Now <= RentalEndDate)
+        {
+            throw new DomainException("Não é possível atualizar a data do aluguel depois da data final atual.");
+        }
+
         RentalEndDate = returnDate;
+    }
+
+    public void FinalizeRental()
+    {
+        if (IsCompleted)
+        {
+            throw new DomainException("Este aluguel já foi finalizado.");
+        }
+
+        IsCompleted = true; 
     }
 
     private int CalculateLateFee(DateTime returnDate)
@@ -90,12 +114,6 @@ public class Rental : BaseEntity
         FineAmount = daysLate * dailyFine;
 
         return FineAmount;
-    }
-
-    private int CalculateRentalCost()
-    {
-        int daysUsed = (RentalEndDate - RentalStartDate).Days;
-        return daysUsed * AppliedDailyPrice;
     }
 
     private void Validate()

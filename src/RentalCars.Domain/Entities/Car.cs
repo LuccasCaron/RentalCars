@@ -40,7 +40,7 @@ public class Car : BaseEntity
 
     public static Car Create(string brand, string model, int year, int dailyRentalPrice)
     {
-        var car = new Car(brand, model, year, true, dailyRentalPrice); 
+        var car = new Car(brand, model, year, true, dailyRentalPrice);
         car.Validate();
 
         return car;
@@ -49,6 +49,26 @@ public class Car : BaseEntity
     #endregion
 
     #region Methods
+
+    public void SetAvailibilityFalse()
+    {
+        if (!Availability)
+        {
+            throw new DomainException("Este carro não está disponível.");
+        }
+
+        Availability = false;
+    }
+
+    public void UpdateDailyRentalPrice(int newDailyRentalPrice)
+    {
+        if(newDailyRentalPrice < 0)
+        {
+            throw new DomainException("O Preço diário não pode ser menor que 0.");
+        }
+
+        DailyRentalPrice = newDailyRentalPrice;
+    }
 
     private void Validate()
     {
@@ -60,4 +80,5 @@ public class Car : BaseEntity
     }
 
     #endregion
+
 }

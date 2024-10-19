@@ -1,9 +1,11 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using RentalCars.Application.Requests.Rental;
 using RentalCars.Application.Requests.User.Validators;
 using RentalCars.Application.Services.Cars;
 using RentalCars.Application.Services.Jwt;
+using RentalCars.Application.Services.Rentals;
 using RentalCars.Application.Services.User;
 using RentalCars.Infra.IoC.Extensions;
 
@@ -23,7 +25,8 @@ public static class DependencyInjection
 
         services.AddScoped<IUserService, UserService>()
                 .AddScoped<IJwtService, JwtService>()
-                .AddScoped<ICarService, CarService>();
+                .AddScoped<ICarService, CarService>()
+                .AddScoped<IRentalService, RentalService>();
 
 
         return services;
