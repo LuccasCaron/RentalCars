@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RentalCars.Infra.Data.Context;
@@ -21,6 +22,15 @@ internal static class DbContextExtension
 
         return services;
 
+    }
+
+    public static void MigrationInit(this IApplicationBuilder appBuilder)
+    {
+        using (var serviceScope = appBuilder.ApplicationServices.CreateScope())
+        {
+            var dbContext = serviceScope.ServiceProvider.GetService<ApplicationDbContext>();
+            dbContext.Database.Migrate();
+        }
     }
 
 }

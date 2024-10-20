@@ -1,0 +1,35 @@
+services:
+  api:
+    container_name: rental_cars
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4652:8080"
+    networks:
+      - rental_cars_network
+    depends_on:
+      postgres:
+        condition: service_healthy  # Aguarda o contêiner do PostgreSQL estar saudável
+
+  postgres:
+    image: "postgres"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234@Teste
+      POSTGRES_DB: rentalcars_db
+    volumes:
+      - c:\dados\volumes\postgres:/var/lib/postgresql/data
+    networks:
+      rental_cars_network:
+        aliases:
+          - "postgres-db"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  rental_cars_network:
+    driver: bridge

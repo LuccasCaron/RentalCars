@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RentalCars.Application.Requests.User.Validators;
@@ -27,8 +28,14 @@ public static class DependencyInjection
                 .AddScoped<ICarService, CarService>()
                 .AddScoped<IRentalService, RentalService>();
 
-
         return services;
     }
 
+    public static WebApplication RegisterMigrations(this WebApplication application)
+    {
+
+        DbContextExtension.MigrationInit(application);
+
+        return application;
+    }
 }

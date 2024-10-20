@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers()
                 .AddFluentValidation(fv =>
                 {
-                    fv.RegisterValidatorsFromAssembly(typeof(Program).Assembly); 
+                    fv.RegisterValidatorsFromAssembly(typeof(Program).Assembly);
                 });
 
 builder.Services.AddEndpointsApiExplorer();
@@ -16,6 +16,8 @@ var configuration = builder.Configuration;
 builder.Services.AddInfraestructure(configuration);
 
 var app = builder.Build();
+
+app.RegisterMigrations();
 
 app.UseSwagger();
 app.UseSwaggerUI();
