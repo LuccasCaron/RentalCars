@@ -14,6 +14,7 @@
     <ProjectReference Include="..\RentalCars.Application\RentalCars.Application.csproj" />
     <ProjectReference Include="..\RentalCars.Domain\RentalCars.Domain.csproj" />
     <ProjectReference Include="..\RentalCars.Infra.Data\RentalCars.Infra.Data.csproj" />
+    <ProjectReference Include="..\RentalCars.Messaging\RentalCars.Messaging.csproj" />
   </ItemGroup>
 
 </Project>
