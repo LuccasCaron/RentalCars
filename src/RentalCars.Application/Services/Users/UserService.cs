@@ -33,12 +33,12 @@ public class UserService : IUserService
 
     #region Methods
 
-    public async Task<Response<IdentityUser>> AddAsync(AddUserRequest newUser)
+    public async Task<ApiResponse<IdentityUser>> AddAsync(AddUserRequest newUser)
     {
 
         var existUserWithThisEmail = await _userManager.FindByEmailAsync(newUser.Email);
 
-        if (existUserWithThisEmail is not null) return new Response<IdentityUser>(null, 400, "Já existe um usuário com esse e-mail.");
+        if (existUserWithThisEmail is not null) return new ApiResponse<IdentityUser>(null, 400, "Já existe um usuário com esse e-mail.");
 
         var user = new IdentityUser
         {
@@ -53,23 +53,23 @@ public class UserService : IUserService
         {
             await _signInManager.SignInAsync(user, false);
 
-            return new Response<IdentityUser>(user, 200);
+            return new ApiResponse<IdentityUser>(user, 200);
         }
 
-        return new Response<IdentityUser>(null, 400, "Falha ao criar usuário.");
+        return new ApiResponse<IdentityUser>(null, 400, "Falha ao criar usuário.");
     }
 
-    public async Task<Response<string>> LoginAsync(LoginUserRequest credentials)
+    public async Task<ApiResponse<string>> LoginAsync(LoginUserRequest credentials)
     {
         var result = await _signInManager.PasswordSignInAsync(credentials.Email, credentials.Password, false, false);
 
-        if(!result.Succeeded) return new Response<string>(null, 400, "Usuário ou senha incorretos.");
+        if(!result.Succeeded) return new ApiResponse<string>(null, 400, "Usuário ou senha incorretos.");
 
         var token = await _jwtService.GenerateTokenAsync(credentials.Email);
 
-        if (!result.Succeeded) return new Response<string>(null, 400, "Erro ao gerar Token.");
+        if (!result.Succeeded) return new ApiResponse<string>(null, 400, "Erro ao gerar Token.");
 
-        return new Response<string>(token);
+        return new ApiResponse<string>(token);
 
     }
 

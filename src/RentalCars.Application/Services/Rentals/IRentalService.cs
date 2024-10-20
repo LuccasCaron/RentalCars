@@ -7,10 +7,10 @@ namespace RentalCars.Application.Services.Rentals;
 
 public interface IRentalService
 {
-    Task<Response<Rental>> AddAsync(AddRentalRequest newRental);
-    Task<Response<FinalizedRentalResponse>> FinalizeRentalByIdAsync(Guid id);
-    Task<Response<Rental>> GetRentalByIdAsync(Guid id);
-    Task<Response<IEnumerable<Rental>>> GetRentalsByUserEmailAsync(string userEmail);
-    Task<Response<RentalSimulationResponse>> SimulateRentalCostAsync(AddRentalRequest simulation);
-    Task<Response<Rental>> UpdateRentalEndDateByIdAsync(Guid id, DateTime newEndDate);
+    Task<ApiResponse<Rental>> AddAsync(AddRentalRequest newRental);
+    Task<ApiResponse<FinalizedRentalResponse>> FinalizeRentalByIdAsync(Guid id);
+    Task<ApiResponse<Rental>> GetRentalByIdAsync(Guid id);
+    Task<ApiResponse<IEnumerable<Rental>>> GetRentalsByUserEmailAsync(string userEmail);
+    Task<ApiResponse<RentalSimulationResponse>> SimulateRentalCostAsync(AddRentalRequest simulation);
+    Task<ApiResponse<Rental>> UpdateRentalEndDateByIdAsync(Guid id, DateTime newEndDate);
 }

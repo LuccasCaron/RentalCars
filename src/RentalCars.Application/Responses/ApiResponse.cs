@@ -2,16 +2,16 @@
 
 namespace RentalCars.Application.Responses;
 
-public record Response<TData>
+public record ApiResponse<TData>
 {
     private readonly int _code;
     public string? Message { get; init; } = string.Empty;
     public TData? Data { get; init; }
 
     [JsonConstructor]
-    public Response() => _code = 200;
+    public ApiResponse() => _code = 200;
 
-    public Response(TData? data, int code = 200, string? message = null)
+    public ApiResponse(TData? data, int code = 200, string? message = null)
     {
         Message = message;
         Data = data;

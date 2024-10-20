@@ -11,6 +11,8 @@ services:
     depends_on:
       postgres:
         condition: service_healthy  # Aguarda o contêiner do PostgreSQL estar saudável
+      rabbitmq:
+        condition: service_healthy  # Aguarda o RabbitMQ estar pronto
 
   postgres:
     image: "postgres"
@@ -26,6 +28,23 @@ services:
           - "postgres-db"
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  rabbitmq:
+    image: "rabbitmq:3-management" 
+    container_name: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - "5672:5672"  
+      - "15672:15672" 
+    networks:
+      - rental_cars_network
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
       interval: 10s
       timeout: 5s
       retries: 5

@@ -19,6 +19,7 @@ public static class DependencyInjection
 
         services.RegisterDbContext(configuration)
                 .RegisterIdentity(configuration)
+                .RegisterRabbitMQ(configuration)
                 .RegisterCustomSwaggerGen();
 
         services.AddValidatorsFromAssemblyContaining<AddUserRequestValidator>();

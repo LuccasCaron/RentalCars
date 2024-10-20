@@ -13,15 +13,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentalCars.API", "src\Renta
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentalCars.Application", "src\RentalCars.Application\RentalCars.Application.csproj", "{DA2D0241-BA88-42DD-AFB5-5C59A0F4154E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentalCars.Domain.Tests", "tests\RentalCars.Domain.Tests\RentalCars.Domain.Tests.csproj", "{1E6C37A1-9B9C-4C27-B623-0B27FEF222BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentalCars.Domain.Tests", "tests\RentalCars.Domain.Tests\RentalCars.Domain.Tests.csproj", "{1E6C37A1-9B9C-4C27-B623-0B27FEF222BA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F244AB05-A6AB-4C5D-813F-1E0B8C709D68}"
-	ProjectSection(SolutionItems) = preProject
-		src\RentalCars.API\docker-compose.yml = src\RentalCars.API\docker-compose.yml
-		src\RentalCars.API\Dockerfile = src\RentalCars.API\Dockerfile
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{8B64238F-245C-4F93-9CA0-D2CD52917E59}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Itens de Solução", "Itens de Solução", "{E75649DB-565D-4B99-A8EC-7826153EDCF6}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

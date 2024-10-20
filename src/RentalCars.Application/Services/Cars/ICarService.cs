@@ -6,9 +6,9 @@ namespace RentalCars.Application.Services.Cars;
 
 public interface ICarService
 {
-    Task<Response<Car>> AddAsync(AddCarRequest newCar);
-    Task<Response<Car>> GetByIdAsync(Guid id);
-    Task<Response<bool>> RemoveByIdAsync(Guid carId);
-    Task<Response<IEnumerable<Car>>> ListAvailableCarsForRental();
-    Task<Response<IEnumerable<Car>>> ListUnavailableCarsForRental();
+    Task<ApiResponse<Car>> AddAsync(AddCarRequest newCar);
+    Task<ApiResponse<Car>> GetByIdAsync(Guid id);
+    Task<ApiResponse<bool>> RemoveByIdAsync(Guid carId);
+    Task<ApiResponse<IEnumerable<Car>>> ListAvailableCarsForRental();
+    Task<ApiResponse<IEnumerable<Car>>> ListUnavailableCarsForRental();
 }

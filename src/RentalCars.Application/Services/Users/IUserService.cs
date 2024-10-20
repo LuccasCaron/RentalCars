@@ -6,7 +6,7 @@ namespace RentalCars.Application.Services.User;
 
 public interface IUserService
 {
-    Task<Response<IdentityUser>> AddAsync(AddUserRequest newUser);
+    Task<ApiResponse<IdentityUser>> AddAsync(AddUserRequest newUser);
 
-    Task<Response<string>> LoginAsync(LoginUserRequest credentials);
+    Task<ApiResponse<string>> LoginAsync(LoginUserRequest credentials);
 }
