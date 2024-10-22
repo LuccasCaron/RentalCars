@@ -55,6 +55,11 @@ public class CarService : ICarService
 
         if (car is null) return new ApiResponse<bool>(false, 404, "Carro não encontrado.");
 
+        var isCarInRental = await _context.Rentals.FirstOrDefaultAsync(x => x.CarId == carId)
+                                                  .ConfigureAwait(false);
+
+        if (isCarInRental is not null) return new ApiResponse<bool>(false, 400, "Não é possível deletar um carro que está registrado em alguel.");
+
         _context.Cars.Remove(car);
 
         await _context.SaveChangesAsync()

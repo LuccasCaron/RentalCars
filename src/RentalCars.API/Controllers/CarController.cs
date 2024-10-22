@@ -87,7 +87,7 @@ public class CarController : ControllerBase
     {
         var response = await _carService.RemoveByIdAsync(id);
 
-        if (response.IsSuccess) return Ok(response);
+        if (response.IsSuccess) return NoContent();
 
         return NotFound(response);
     }

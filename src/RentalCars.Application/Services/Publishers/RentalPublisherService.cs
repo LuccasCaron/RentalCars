@@ -31,6 +31,11 @@ public class RentalPublisherService : IRentalPublisherService
         return;
     }
 
+    public async Task PublishRentalFinishAsync(Guid rentalId)
+    {
+        await _bus.Publish(new RentalFinishEvent { RentalId= rentalId });
+    }
+
     #endregion
 
 }

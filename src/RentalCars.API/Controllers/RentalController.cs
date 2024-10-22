@@ -104,4 +104,18 @@ public class RentalController : ControllerBase
 
     #endregion
 
+    #region DELETE Methods
+
+    [HttpDelete("{id:guid}")]
+    public async Task<IActionResult> DeleteByIdAsync(Guid id)
+    {
+        var response = await _rentalService.DeleteCompletedRentalByIdAsync(id);
+
+        if (response.IsSuccess) return NoContent();
+
+        return BadRequest(response);
+    }
+
+    #endregion
+
 }

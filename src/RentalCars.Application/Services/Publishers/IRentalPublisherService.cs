@@ -3,4 +3,6 @@
 public interface IRentalPublisherService
 {
     Task PublishRentalCreatedAsync(Guid rentalId);
+
+    Task PublishRentalFinishAsync(Guid rentalId);
 }

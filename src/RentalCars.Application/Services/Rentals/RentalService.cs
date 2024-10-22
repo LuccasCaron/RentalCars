@@ -82,7 +82,7 @@ public class RentalService : IRentalService
 
         var rental = Rental.Create(carExist, Guid.Parse(userExist.Id), simulation.RentalStartDate, simulation.RentalEndDate);
 
-        var priceSimulation = rental.CalculateRentalCost(DateTime.Now);
+        var priceSimulation = rental.CalculateRentalCost(simulation.RentalEndDate);
 
         return new ApiResponse<RentalSimulationResponse>(new RentalSimulationResponse(priceSimulation));
     }
@@ -107,6 +107,8 @@ public class RentalService : IRentalService
 
         var totalToPay = rental.CalculateTotalToPay(DateTime.Now);
 
+        await _publisherService.PublishRentalFinishAsync(id);
+
         var response = new FinalizedRentalResponse(rental, totalToPay);
 
         return new ApiResponse<FinalizedRentalResponse>(response);
@@ -120,6 +122,8 @@ public class RentalService : IRentalService
         if (rental is null) return new ApiResponse<Rental>(null, 404, "Aluguel não encontrado.");
 
         if (rental.IsCompleted) return new ApiResponse<Rental>(null, 400, "O Aluguel já foi encerrado.");
+
+        if (rental.RentalStartDate > newEndDate) return new ApiResponse<Rental>(null, 400, "Não é possível atualizar para uma data anterior a data inicial.");
 
         rental.UpdateRentalEndDate(newEndDate);
 
@@ -152,6 +156,23 @@ public class RentalService : IRentalService
         if (rentals.Count < 1) return new ApiResponse<IEnumerable<Rental>>(null, 404, "Este usuário ainda não alugou nenhum carro.");
 
         return new ApiResponse<IEnumerable<Rental>>(rentals);
+    }
+
+    public async Task<ApiResponse<bool>> DeleteCompletedRentalByIdAsync(Guid id)
+    {
+        var rental = await _context.Rentals.FindAsync(id)
+                                   .ConfigureAwait(false);
+
+        if (rental is null) return new ApiResponse<bool>(false, 404, "Aluguel não encontrado");
+
+        if (rental.IsCompleted == false) return new ApiResponse<bool>(false, 400, "Não é possível deletar um alguel ativo.");
+
+        _context.Rentals.Remove(rental);
+
+        await _context.SaveChangesAsync()
+                      .ConfigureAwait(false);
+
+        return new ApiResponse<bool>();
     }
 
     #endregion

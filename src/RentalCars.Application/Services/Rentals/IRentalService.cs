@@ -13,4 +13,5 @@ public interface IRentalService
     Task<ApiResponse<IEnumerable<Rental>>> GetRentalsByUserEmailAsync(string userEmail);
     Task<ApiResponse<RentalSimulationResponse>> SimulateRentalCostAsync(AddRentalRequest simulation);
     Task<ApiResponse<Rental>> UpdateRentalEndDateByIdAsync(Guid id, DateTime newEndDate);
+    Task<ApiResponse<bool>> DeleteCompletedRentalByIdAsync(Guid id);
 }

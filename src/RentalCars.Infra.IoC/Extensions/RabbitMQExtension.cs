@@ -13,7 +13,7 @@ internal static class RabbitMQExtension
         services.AddMassTransit(busConfigurator =>
         {
 
-            busConfigurator.AddConsumer<RentalCreatedEventConsumer>();
+            busConfigurator.AddConsumer<RentalEventConsumer>();
 
             busConfigurator.UsingRabbitMq((ctx, cfg) =>
             {
