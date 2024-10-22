@@ -12,6 +12,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\RentalCars.Infra.Data\RentalCars.Infra.Data.csproj" />
+	  <ProjectReference Include="..\RentalCars.Infra.Email\RentalCars.Infra.Email.csproj" />
 	</ItemGroup>
 
 </Project>

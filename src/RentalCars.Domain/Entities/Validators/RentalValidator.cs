@@ -17,7 +17,9 @@ internal class RentalValidator : AbstractValidator<Rental>
 
         RuleFor(x => x.RentalStartDate)
             .NotEmpty().WithMessage("A data de início do aluguel é obrigatória.")
-            .GreaterThanOrEqualTo(DateTime.Now).WithMessage("A data de início do aluguel não pode ser no passado.");
+            .Must(date => date.Date >= DateTime.Now.Date)
+            .WithMessage("A data de início do aluguel precisa ser com pelo menos 1 dia de antecedência.");
+
 
         RuleFor(x => x.RentalEndDate)
             .NotEmpty().WithMessage("A data final do aluguel é obrigatória.")

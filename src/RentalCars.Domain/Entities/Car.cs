@@ -60,6 +60,11 @@ public sealed class Car : BaseEntity
         Availability = false;
     }
 
+    public void SetAvailibilityTrue()
+    {
+        Availability = true;
+    }
+
     public void UpdateDailyRentalPrice(int newDailyRentalPrice)
     {
         if(newDailyRentalPrice < 0)

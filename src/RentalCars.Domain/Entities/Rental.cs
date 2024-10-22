@@ -67,7 +67,7 @@ public class Rental : BaseEntity
 
     public int CalculateTotalToPay(DateTime returnDate)
     {
-        int totalToPay = CalculateRentalCost();
+        int totalToPay = CalculateRentalCost(returnDate);
 
         if (returnDate > RentalEndDate)
         {
@@ -78,9 +78,24 @@ public class Rental : BaseEntity
         return totalToPay;
     }
 
-    public int CalculateRentalCost()
+    public int CalculateRentalCost(DateTime returnDate)
     {
-        int daysUsed = (RentalEndDate - RentalStartDate).Days;
+        if (returnDate < RentalStartDate)
+        {
+            return 0;
+        }
+
+        int daysUsed;
+
+        if (returnDate < RentalEndDate && returnDate > RentalStartDate)
+        {
+            daysUsed = (returnDate - RentalStartDate).Days;
+
+            return daysUsed * AppliedDailyPrice;
+        }
+
+        daysUsed = (RentalEndDate - RentalStartDate).Days;
+
         return daysUsed * AppliedDailyPrice;
     }
 

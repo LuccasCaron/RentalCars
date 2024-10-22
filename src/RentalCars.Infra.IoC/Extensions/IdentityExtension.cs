@@ -25,7 +25,7 @@ internal static class IdentityExtension
 
         var jwtSettings = jwtSettingsSection.Get<JwtSettings>();
 
-        var key = Encoding.ASCII.GetBytes(jwtSettings.Segredo);
+        var key = Encoding.ASCII.GetBytes(jwtSettings.Secret);
 
         services.AddAuthentication(opts =>
         {
@@ -40,8 +40,8 @@ internal static class IdentityExtension
                 IssuerSigningKey = new SymmetricSecurityKey(key),
                 ValidateIssuer = true,
                 ValidateAudience = true,
-                ValidAudience = jwtSettings.Audiencia,
-                ValidIssuer = jwtSettings.Emissor
+                ValidAudience = jwtSettings.Audience,
+                ValidIssuer = jwtSettings.Issuer
             };
         });
 

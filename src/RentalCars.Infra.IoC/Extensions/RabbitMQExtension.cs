@@ -1,6 +1,7 @@
 ﻿using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using RentalCars.Messaging.Consumers;
 
 namespace RentalCars.Infra.IoC.Extensions;
 
@@ -12,13 +13,15 @@ internal static class RabbitMQExtension
         services.AddMassTransit(busConfigurator =>
         {
 
+            busConfigurator.AddConsumer<RentalCreatedEventConsumer>();
+
             busConfigurator.UsingRabbitMq((ctx, cfg) =>
             {
 
-                cfg.Host(new Uri("amqp://rabbitmq:5672"), host =>
+                cfg.Host(new Uri(configuration.GetValue<string>("RabbitMQ:endpoint")), host =>
                 {
-                    host.Username("guest");
-                    host.Password("guest");
+                    host.Username(configuration.GetValue<string>("RabbitMQ:username"));
+                    host.Password(configuration.GetValue<string>("RabbitMQ:password"));
                 });
 
                 cfg.ConfigureEndpoints(ctx);

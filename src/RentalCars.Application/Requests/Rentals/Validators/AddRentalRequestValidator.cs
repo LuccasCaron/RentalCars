@@ -15,8 +15,8 @@ public class AddRentalRequestValidator : AbstractValidator<AddRentalRequest>
             .EmailAddress().WithMessage("O endereço de e-mail precisa ser valído.");
 
         RuleFor(x => x.RentalStartDate)
-           .NotEmpty().WithMessage("A data de início do aluguel é obrigatória.")
-           .GreaterThanOrEqualTo(DateTime.Now).WithMessage("A data de início do aluguel não pode ser no passado.");
+        .NotEmpty().WithMessage("A data de início do aluguel é obrigatória.")
+        .Must(date => date.Date >= DateTime.Now.Date).WithMessage("A data de início do aluguel precisa ser com pelo menos 1 dia de antecedência.");
 
         RuleFor(x => x.RentalEndDate)
             .NotEmpty().WithMessage("A data final do aluguel é obrigatória.")

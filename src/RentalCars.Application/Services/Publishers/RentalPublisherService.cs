@@ -27,6 +27,8 @@ public class RentalPublisherService : IRentalPublisherService
     public async Task PublishRentalCreatedAsync(Guid rentalId)
     {
         await _bus.Publish(new RentalCreatedEvent { RentalId = rentalId });
+
+        return;
     }
 
     #endregion

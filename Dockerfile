@@ -9,7 +9,9 @@ COPY src/RentalCars.API/*.csproj ./src/RentalCars.API/
 COPY src/RentalCars.Application/*.csproj ./src/RentalCars.Application/
 COPY src/RentalCars.Domain/*.csproj ./src/RentalCars.Domain/
 COPY src/RentalCars.Infra.Data/*.csproj ./src/RentalCars.Infra.Data/
+COPY src/RentalCars.Infra.Email/*.csproj ./src/RentalCars.Infra.Email/
 COPY src/RentalCars.Infra.IoC/*.csproj ./src/RentalCars.Infra.IoC/
+COPY src/RentalCars.Messaging/*.csproj ./src/RentalCars.Messaging/
 COPY tests/RentalCars.Domain.Tests/*.csproj ./tests/RentalCars.Domain.Tests/
 
 RUN dotnet restore RentalCars.sln

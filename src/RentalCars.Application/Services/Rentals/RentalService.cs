@@ -49,6 +49,10 @@ public class RentalService : IRentalService
 
         if (userExist is null) return new ApiResponse<Rental>(null, 404, "Usuário não encontrado.");
 
+        var existRental = await _context.Rentals.FirstOrDefaultAsync(x => x.UserId == Guid.Parse(userExist.Id) && x.IsCompleted == false);
+
+        if (existRental is not null) return new ApiResponse<Rental>(null, 400, "Usuário já está com um alguel ativo.");
+
         var rental = Rental.Create(carExist, Guid.Parse(userExist.Id), newRental.RentalStartDate, newRental.RentalEndDate);
 
         carExist.SetAvailibilityFalse();
@@ -78,7 +82,7 @@ public class RentalService : IRentalService
 
         var rental = Rental.Create(carExist, Guid.Parse(userExist.Id), simulation.RentalStartDate, simulation.RentalEndDate);
 
-        var priceSimulation = rental.CalculateRentalCost();
+        var priceSimulation = rental.CalculateRentalCost(DateTime.Now);
 
         return new ApiResponse<RentalSimulationResponse>(new RentalSimulationResponse(priceSimulation));
     }
@@ -92,9 +96,16 @@ public class RentalService : IRentalService
 
         if (rental.IsCompleted) return new ApiResponse<FinalizedRentalResponse>(null, 400, "O Aluguel já foi encerrado.");
 
+        var car = await _context.Cars.FindAsync(rental.CarId);
+
+        car?.SetAvailibilityTrue();
+
         rental.FinalizeRental();
 
-        int totalToPay = rental.CalculateTotalToPay(DateTime.Now);
+        await _context.SaveChangesAsync()
+              .ConfigureAwait(false);
+
+        var totalToPay = rental.CalculateTotalToPay(DateTime.Now);
 
         var response = new FinalizedRentalResponse(rental, totalToPay);
 
@@ -129,16 +140,16 @@ public class RentalService : IRentalService
     public async Task<ApiResponse<IEnumerable<Rental>>> GetRentalsByUserEmailAsync(string userEmail)
     {
 
-        var existUser = await _userManager.FindByIdAsync(userEmail)
+        var existUser = await _userManager.FindByEmailAsync(userEmail)
                                           .ConfigureAwait(false);
 
-        if(existUser is null) return new ApiResponse<IEnumerable<Rental>>(null, 404, "Usuário não encontrado.");
+        if (existUser is null) return new ApiResponse<IEnumerable<Rental>>(null, 404, "Usuário não encontrado.");
 
         var rentals = await _context.Rentals.Where(x => x.UserId == Guid.Parse(existUser.Id))
                                             .ToListAsync()
                                             .ConfigureAwait(false);
 
-        if (rentals is null) return new ApiResponse<IEnumerable<Rental>>(null, 404, "Este usuário ainda não alugou nenhum carro.");
+        if (rentals.Count < 1) return new ApiResponse<IEnumerable<Rental>>(null, 404, "Este usuário ainda não alugou nenhum carro.");
 
         return new ApiResponse<IEnumerable<Rental>>(rentals);
     }

@@ -5,8 +5,10 @@ using Microsoft.Extensions.DependencyInjection;
 using RentalCars.Application.Requests.User.Validators;
 using RentalCars.Application.Services.Cars;
 using RentalCars.Application.Services.Jwt;
+using RentalCars.Application.Services.Publishers;
 using RentalCars.Application.Services.Rentals;
 using RentalCars.Application.Services.User;
+using RentalCars.Infra.Email.Services;
 using RentalCars.Infra.IoC.Extensions;
 
 namespace RentalCars.Infra.IoC;
@@ -27,7 +29,9 @@ public static class DependencyInjection
         services.AddScoped<IUserService, UserService>()
                 .AddScoped<IJwtService, JwtService>()
                 .AddScoped<ICarService, CarService>()
-                .AddScoped<IRentalService, RentalService>();
+                .AddScoped<IRentalService, RentalService>()
+                .AddScoped<IRentalPublisherService, RentalPublisherService>()
+                .AddScoped<IEmailService, EmailService>();
 
         return services;
     }
