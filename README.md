@@ -9,12 +9,19 @@ Testes automatizados estão incluídos para garantir a confiabilidade da aplica�
 
 ## Tecnologias Utilizadas
 **.NET 8**: Framework de desenvolvimento para construir a aplicação.
+
 **PostgreSQL**: Sistema de gerenciamento de banco de dados relacional.
+
 **Identity**: Sistema de autenticação e autorização.
+
 **Entity Framework Core**: ORM para acesso a dados.
+
 **Fluent Validation**: Biblioteca de validação para garantir a integridade dos dados.
+
 **RabbitMQ**: Sistema de mensageria para processamento de eventos.
+
 **Docker e Docker Compose**: Para orquestrar os serviços e facilitar o deploy local.
+
 **XUnit**: Framework para testes automatizados.
 
 ## Utilização
