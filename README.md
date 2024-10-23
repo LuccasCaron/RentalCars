@@ -27,9 +27,10 @@ Este projeto utiliza Docker e Docker Compose para orquestrar os serviços, inclu
    ```
 **2** - Valide as variáveis de ambiente
     no arquivo appsettings.json para garantir que os dados de envio de e-mail estejam corretos.
+    
 **3** - Navegue até o diretório raiz do projeto
 **4** - Suba os containers com Docker Compose:
-    ```bash
+   ```bash
    docker-compose up -d
-   ```
+
 
