@@ -87,7 +87,7 @@ public class Rental : BaseEntity
 
         int daysUsed;
 
-        if (returnDate < RentalEndDate && returnDate > RentalStartDate)
+        if (returnDate > RentalStartDate && returnDate < RentalEndDate)
         {
             daysUsed = (returnDate - RentalStartDate).Days;
 
