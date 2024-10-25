@@ -1,18 +1,35 @@
 # Serviço de Aluguel de Carros
 
 ## Descrição
-Este projeto desenvolve o back-end de um serviço para gerenciar o aluguel de carros. O serviço utiliza **.NET 8** e é projetado com uma arquitetura em camadas, que inclui as camadas API, Application, Domain, Infra.Data, Infra.IoC, Infra.Email e Messaging. Ele incorpora Identity para autenticação e autorização de usuários. O sistema segue princípios como Domain-Driven Design (DDD) e SOLID, garantindo uma boa estrutura. O banco de dados é gerenciado utilizando PostgreSQL.
+Este projeto desenvolve o back-end de um serviço para gerenciar o aluguel de carros. O serviço utiliza **.NET 8** e é projetado com uma arquitetura em camadas, que inclui as camadas:
 
-Além das funcionalidades de aluguel de carros, o sistema dispara **eventos** através do RabbitMQ para processar ações assíncronas, como notificações por e-mail, implementadas na camada Infra.Email. A camada Messaging cuida da integração com RabbitMQ, contendo os consumidores e a lógica para lidar com eventos, como a criação de aluguel de carro.
+
+**API**;
+
+**Application**;
+
+**Domain**;
+
+**Infra.Data**;
+
+**Infra.IoC**;
+
+**Infra.Email**;
+
+**Messaging**;
+
+Ele incorpora Identity para autenticação e autorização de usuários. O sistema segue princípios como Domain-Driven Design (DDD) e SOLID, garantindo uma boa estrutura. O banco de dados é gerenciado utilizando PostgreSQL.
+
+Além das funcionalidades de aluguel de carros, o sistema dispara **eventos** através do **RabbitMQ** para processar ações assíncronas, como notificações por e-mail, implementadas na camada Infra.Email.
 
 Testes automatizados estão incluídos para garantir a confiabilidade da aplicação.
 
 ## Tecnologias Utilizadas
 **.NET 8**: Framework de desenvolvimento para construir a aplicação.
 
-**PostgreSQL**: Sistema de gerenciamento de banco de dados relacional.
+**PostgreSQL**: Banco de dados relacional.
 
-**Identity**: Sistema de autenticação e autorização.
+**Identity Server**: Autenticação e autorização.
 
 **Entity Framework Core**: ORM para acesso a dados.
 
