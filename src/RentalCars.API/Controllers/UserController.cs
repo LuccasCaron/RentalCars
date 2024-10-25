@@ -27,6 +27,9 @@ public class UserController : ControllerBase
     #region POST Methods
 
     [HttpPost("add")]
+    [Produces("application/json")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
     public async Task<IActionResult> AddAsync(AddUserRequest newUser)
     {
@@ -38,6 +41,9 @@ public class UserController : ControllerBase
     }
 
     [HttpPost("login")]
+    [Produces("application/json")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
     public async Task<IActionResult> LoginAsync(LoginUserRequest credentials)
     {

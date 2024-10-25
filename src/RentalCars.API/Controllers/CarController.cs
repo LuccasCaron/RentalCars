@@ -29,7 +29,9 @@ public class CarController : ControllerBase
     #region GET Methods
 
     [HttpGet("{id:guid}", Name = "GetByIdAsync")]
-
+    [Produces("application/json")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetByIdAsync(Guid id)
     {
         var response = await _carService.GetByIdAsync(id);
@@ -41,6 +43,9 @@ public class CarController : ControllerBase
 
 
     [HttpGet("availables")]
+    [Produces("application/json")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
 
     public async Task<IActionResult> ListAvailableCarsForRental()
     {
@@ -52,6 +57,9 @@ public class CarController : ControllerBase
     }
 
     [HttpGet("unavailables")]
+    [Produces("application/json")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
 
     public async Task<IActionResult> ListUnavailableCarsForRental()
     {
@@ -67,6 +75,9 @@ public class CarController : ControllerBase
     #region POST Methods
 
     [HttpPost("add")]
+    [Produces("application/json")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
     public async Task<IActionResult> AddAsync(AddCarRequest newCar)
     {
@@ -82,6 +93,9 @@ public class CarController : ControllerBase
     #region DELETE Methods
 
     [HttpDelete("{id:guid}")]
+    [Produces("application/json")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
 
     public async Task<IActionResult> RemoveAsync(Guid id)
     {

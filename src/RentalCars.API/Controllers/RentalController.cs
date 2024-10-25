@@ -29,6 +29,9 @@ public class RentalController : ControllerBase
     #region GET Methods
 
     [HttpGet("{id:guid}", Name = "GetAsync")]
+    [Produces("application/json")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
 
     public async Task<IActionResult> GetAsync(Guid id)
     {
@@ -40,6 +43,9 @@ public class RentalController : ControllerBase
     }
 
     [HttpGet("user")]
+    [Produces("application/json")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
 
     public async Task<IActionResult> GetRentalsByUserEmail(string userEmail)
     {
@@ -55,6 +61,9 @@ public class RentalController : ControllerBase
     #region POST Methods
 
     [HttpPost("add")]
+    [Produces("application/json")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
     public async Task<IActionResult> AddAsync(AddRentalRequest newRental)
     {
@@ -66,6 +75,9 @@ public class RentalController : ControllerBase
     }
 
     [HttpPost("simulate")]
+    [Produces("application/json")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
     public async Task<IActionResult> SimulateRentalCostAsync(AddRentalRequest simulation)
     {
@@ -77,6 +89,9 @@ public class RentalController : ControllerBase
     }
 
     [HttpPost("finalize/{id:guid}")]
+    [Produces("application/json")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
     public async Task<IActionResult> FinalizeRentalByIdAsyncAsync(Guid id)
     {
@@ -92,6 +107,9 @@ public class RentalController : ControllerBase
     #region PATCH Methods
 
     [HttpPatch("update/{id:guid}")]
+    [Produces("application/json")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
     public async Task<IActionResult> UpdateRentalEndDateByIdAsync(Guid id, DateTime newEndDate)
     {
@@ -107,6 +125,9 @@ public class RentalController : ControllerBase
     #region DELETE Methods
 
     [HttpDelete("{id:guid}")]
+    [Produces("application/json")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> DeleteByIdAsync(Guid id)
     {
         var response = await _rentalService.DeleteCompletedRentalByIdAsync(id);
