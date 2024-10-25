@@ -19,8 +19,8 @@ public static class TemplateNewRental
                     <li><strong>Ano:</strong> {newRentalDto.Car.Year}</li>
                     <li><strong>Marca:</strong> {newRentalDto.Car.Brand}</li>
                     <li><strong>Valor da diária:</strong> {newRentalDto.Rental.AppliedDailyPrice.ToString("C")}</li>
-                    <li><strong>Data de início:</strong> {newRentalDto.Rental.RentalStartDate.ToShortDateString()}</li>
-                    <li><strong>Data prevista de entrega:</strong> {newRentalDto.Rental.RentalEndDate.ToShortDateString()}</li>
+                <li><strong>Data de início:</strong> {newRentalDto.Rental.RentalStartDate.ToString("dd/MM/yyyy")}</li>
+                <li><strong>Data prevista de entrega:</strong> {newRentalDto.Rental.RentalEndDate.ToString("dd/MM/yyyy")}</li>
                 </ul>
                 <p>Obrigado por escolher a RentalCars!</p>
             </body>

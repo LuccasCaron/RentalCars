@@ -19,7 +19,7 @@ public static class TemplateRentalFinish
                     <li><strong>Ano:</strong> {rentalFinishDto.Car.Year}</li>
                     <li><strong>Marca:</strong> {rentalFinishDto.Car.Brand}</li>
                     <li><strong>Valor total:</strong> {rentalFinishDto.TotalToPay}</li>
-                    <li><strong>Data de devolução:</strong> {DateTime.Now.ToShortDateString()}</li>
+                    <li><strong>Data de devolução:</strong> {DateTime.Now.ToString("dd/MM/yyyy")}</li>
                 </ul>
                 <p>Esperamos que você tenha desfrutado da sua experiência conosco!</p>
                 <p>Até a próxima!</p>

@@ -28,7 +28,7 @@ public class CarController : ControllerBase
 
     #region GET Methods
 
-    [HttpGet("{id:guid}")]
+    [HttpGet("{id:guid}", Name = "GetByIdAsync")]
 
     public async Task<IActionResult> GetByIdAsync(Guid id)
     {
@@ -72,7 +72,7 @@ public class CarController : ControllerBase
     {
         var response = await _carService.AddAsync(newCar);
 
-        if (response.IsSuccess) return Ok(response);
+        if (response.IsSuccess) return CreatedAtRoute("GetAsync", new { id = response?.Data?.Id }, response);
 
         return BadRequest(response);
     }

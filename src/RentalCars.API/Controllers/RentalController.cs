@@ -60,7 +60,7 @@ public class RentalController : ControllerBase
     {
         var response = await _rentalService.AddAsync(newRental);
 
-        if (response.IsSuccess) return CreatedAtRoute("GetAsync", new { id = response.Data.Id }, response);
+        if (response.IsSuccess) return CreatedAtRoute("GetAsync", new { id = response?.Data?.Id }, response);
 
         return BadRequest(response);
     }
